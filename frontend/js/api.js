@@ -1,4 +1,7 @@
-const API_BASE_URL = 'http://localhost:3000/api';
+// В production используем адрес на Amvera
+const API_BASE_URL = window.location.origin.includes('amvera.ru') 
+  ? 'https://ваш-проект.amvera.ru/api'
+  : 'http://localhost:3000/api';
 
 class API {
   constructor() {

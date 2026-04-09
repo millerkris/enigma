@@ -5,6 +5,18 @@ const fs = require('fs');
 
 let db;
 
+// Добавьте эту функцию в начало файла
+function getDbPath() {
+  // На Amvera используем /data, локально — папку database
+  if (process.env.AMVERA === 'true' || process.env.NODE_ENV === 'production') {
+    return path.join('/data', 'enigma.sqlite');
+  }
+  return path.join(__dirname, '..', 'database', 'enigma.sqlite');
+}
+
+// И в initDB() используйте:
+const dbPath = getDbPath();
+
 async function initDB() {
   const dbDir = path.join(__dirname, '..', 'database');
   if (!fs.existsSync(dbDir)) {

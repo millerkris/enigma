@@ -1,0 +1,15 @@
+meta:
+  environment: node
+  toolchain:
+    name: npm
+    version: 18
+
+build:
+  # Переходим в папку backend и устанавливаем зависимости
+  additionalCommands: cd backend && npm install
+
+run:
+  # Запускаем сервер из папки backend
+  command: cd backend && node server.js
+  containerPort: 3000
+  persistenceMount: /data
